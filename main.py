@@ -224,18 +224,22 @@ class Simulation:
         for inputField in self.input_fields.values():
             inputField.draw(self.window, self.current_input)
         
+        base_price = FONTS.get('large').render(f'Base Price: {str(self.selected_cafe.base_price) if self.selected_cafe else '0'}', True, (255, 255, 255))
+        self.window.blit(base_price, base_price.get_rect(topleft=(1090, 310)))
+        has_outlet = FONTS.get('large').render(f'Has Outlet: {str(self.selected_cafe.has_outlets) if self.selected_cafe else ''}', True, (255, 255, 255))
+        self.window.blit(has_outlet, has_outlet.get_rect(topleft=(1090, 340)))
         occupancies = FONTS.get('large').render(f'Average Occupancy: {str(self.selected_cafe.get_average_occupancies()) if self.selected_cafe else '0'}', True, (255, 255, 255))
-        self.window.blit(occupancies, occupancies.get_rect(topleft=(1090, 310)))
+        self.window.blit(occupancies, occupancies.get_rect(topleft=(1090, 370)))
         customers_server = FONTS.get('large').render(f'Customers Served: {str(self.selected_cafe.customers_served) if self.selected_cafe else '0'}', True, (255, 255, 255))
-        self.window.blit(customers_server, customers_server.get_rect(topleft=(1090, 340)))
+        self.window.blit(customers_server, customers_server.get_rect(topleft=(1090, 400)))
         revenue = FONTS.get('large').render(f'Minimum Revenue: {str(self.selected_cafe.get_minimum_revenue()) if self.selected_cafe else '0'}', True, (255, 255, 255))
-        self.window.blit(revenue, revenue.get_rect(topleft=(1090, 370)))
+        self.window.blit(revenue, revenue.get_rect(topleft=(1090, 430)))
         cost = FONTS.get('large').render(f'Electricity & Rent: {str(round(self.selected_cafe.get_cost(), 2)) if self.selected_cafe else '0'}', True, (255, 255, 255))
-        self.window.blit(cost, cost.get_rect(topleft=(1090, 400)))
+        self.window.blit(cost, cost.get_rect(topleft=(1090, 460)))
 
         for i, instruction in enumerate(["Move Camera Left: a key", "Move Camera Right: d key", "Move Camera Up: w key", "Move Camera Down: s key"]):
             text = FONTS.get('large').render(instruction, True, (255, 255, 255))
-            self.window.blit(text, text.get_rect(topleft=(1090, 460 + (i * 30))))
+            self.window.blit(text, text.get_rect(topleft=(1090, 520 + (i * 30))))
 
 
         pygame.display.flip()
