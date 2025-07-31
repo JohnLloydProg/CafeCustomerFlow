@@ -172,7 +172,7 @@ class Simulation:
                 else:
                     self.agents.remove(agent)
                 
-                if (agent.served and agent.waiting_time == 0):
+                if (agent.served and agent.waiting_time <= 0):
                     self.agents.remove(agent)
             
             for cafe in self.cafes:
