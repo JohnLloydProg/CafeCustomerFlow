@@ -52,6 +52,7 @@ class Simulation:
         pygame.time.set_timer(self.sec_event, 1000, -1)
         record = time_ns()
         move_time = time_ns()
+        draw_time = time_ns()
         change = self.counter
         self.fps = 0
         while self.running:
@@ -110,7 +111,9 @@ class Simulation:
                 if (cafe.rect.collidepoint(x, y)):
                     self.selected_cafe = cafe
 
-            self.draw()
+            if ((time_ns() - draw_time) > ((10**9)/60)):
+                draw_time = time_ns()
+                self.draw()
         print('Exiting the simulation')
         pygame.quit()
         quit()
