@@ -32,7 +32,7 @@ class Cafe:
                 if (customer.has_gadget):
                     if (counter % 60 == 0):
                         self.utility_cost += 0.00915
-                if customer.waiting_time == 0:
+                if customer.waiting_time <= 0 or not self.open:
                     self.customers.remove(customer)
             
             if ((counter % (20 * 60)) == 0):
